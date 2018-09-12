@@ -51,7 +51,8 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'cyan',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit', 
       border: '1px solid blue',
       padding: '8px',
@@ -75,15 +76,25 @@ class App extends Component {
           })}
         </div> 
       )
+
+      style.backgroundColor = 'red'
+    }
+
+    const classes = []
+    if(this.state.persons.length <= 2) {
+      classes.push('red') // classes = ['red']
+    } 
+    if(this.state.persons.length <= 1) {
+      classes.push('bold') // classes = ['red', 'bold']
     }
 
     return (
-      <div className="App">
-        <h1>Hello World</h1>
-        <h2>For The Night is Dark and Full of Terrors</h2>
-        <button style={style} onClick={this.togglePersonsHandler}>Toggle Name</button>
-        {persons} 
-      </div>
+        <div className="App">
+          <h1>Hello World</h1>
+          <p className={classes.join(' ')}>For The Night is Dark and Full of Terrors</p>
+          <button style={style} onClick={this.togglePersonsHandler}>Toggle Name</button>
+          {persons} 
+        </div>
     );
   }
 }
